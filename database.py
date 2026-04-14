@@ -14,5 +14,13 @@ def init_db():
             password TEXT
         )
     """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS animals (
+            animal_name PRIMARY KEY, 
+            habitat TEXT DEFAULT 'Savannah', 
+            food TEXT DEFAULT 'Meat', 
+            image TEXT)
+    """)
+
     conn.commit()
     conn.close()
