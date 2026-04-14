@@ -47,7 +47,7 @@ def seed_database():
                 "INSERT INTO animals (animal_name, habitat, food, image) VALUES (?, ?, ?, ?)",
                 (animal_name, habitat, food, image)
             )
-            print(f"added animal: {username}")
+            print(f"Added animal: {animal_name}")
         
         conn.commit()
         print("\nDatabase seeding complete!")
