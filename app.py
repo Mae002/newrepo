@@ -75,15 +75,15 @@ def register():
 
     return render_template("register.html", error=error)
 
-@app.route("/secret")
-def secret():
+@app.route("/dashboard")
+def animalDisplayPage():
     # TODO: RENAME THIS ROUTE TO /dashboard
 
     if "user" not in session:
         return redirect(url_for("login"))
 
     # TODO: Connect to the database
-    # conn = get_db()
+    conn = get_db()
 
     # TODO: Get all entries that belong to the logged-in user
     # Example:
