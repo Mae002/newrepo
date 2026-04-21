@@ -22,9 +22,9 @@ def init_db():
     """)
     a_conn.execute("""
         CREATE TABLE IF NOT EXISTS animals (
-            animal_name PRIMARY KEY, 
-            habitat TEXT DEFAULT 'Savannah', 
-            food TEXT DEFAULT 'Meat', 
+            animal_name TEXT PRIMARY KEY, 
+            habitat TEXT, 
+            food TEXT, 
             image TEXT)
     """)
 
