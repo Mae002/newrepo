@@ -28,12 +28,12 @@ def seed_database():
     ]
 
     sample_animals = [
-        ("hyena", "sub-saharan", "meat", "img"),
-        ("cheetah", "africa", "meat", "img"),
-        ("tiger", "asia", "meat", "img"),
-        ("horse", "grasslands and prairies", "grass", "img"),
-        ("dog", "households", "high protein", "img"),
-        ("cat", "households, wild", "high nutrition", "img"),
+        ("hyena", "sub-saharan", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfsiTXJbvrwcxFj7FMAJWQHS5J1hW9QOwhA&s"),
+        ("cheetah", "africa", "meat", "https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/AWF_SpeciesPage_Cheetah02_Challenges.webp?h=29c6c1f6&itok=6IU3ZoYS"),
+        ("tiger", "asia", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFtLbS-bbYiXTQOscGaflhDc459sN3olDdgA&s"),
+        ("horse", "grasslands and prairies", "grass", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQx_56Q13xABq0_4iJhREf_YAS4-85zwki-Q&s"),
+        ("dog", "households", "high protein", "https://www.nylabone.com/-/media/project/oneweb/nylabone/images/dog101/10-intelligent-dog-breeds/golden-retriever-tongue-out.jpg?h=430&w=710&hash=7FEB820D235A44B76B271060E03572C7"),
+        ("cat", "households, wild", "high nutrition", "https://lcshelter.org/wp-content/uploads/2024/11/lewis-clark-animal-shelter-lewiston-idaho-cat-1374x1536.png"),
     ]
     
     try:
