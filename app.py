@@ -35,10 +35,10 @@ def login():
             (username,)
         ).fetchone()
         conn.close()
-
+    
         if user and bcrypt.checkpw(password.encode("utf-8"), user["password"]):
             session["user"] = username
-            return redirect(url_for("secret"))
+            return redirect(url_for("dashboard"))
         else:
             error = "Incorrect username or password"
 
@@ -76,31 +76,31 @@ def register():
     return render_template("register.html", error=error)
 
 @app.route("/dashboard")
-def animalDisplayPage():
+def dashboard():
     # TODO: RENAME THIS ROUTE TO /dashboard
 
     if "user" not in session:
         return redirect(url_for("login"))
 
-    # TODO: Connect to the database
+    # # TODO: Connect to the database
     conn = get_db()
 
-    # TODO: Get all entries that belong to the logged-in user
-    # Example:
-    # entries = conn.execute(
-    #     "SELECT * FROM entries WHERE user=?",
-    #     (session["user"],)
-    # ).fetchall()
+    # # TODO: Get all entries that belong to the logged-in user
+    # # Example:
+    animals = conn.execute(
+        "SELECT * FROM animals WHERE animals=?",
+        (session["user"]),
+    ).fetchall()
 
-    # TODO: Close the connection
-    # conn.close()
+    # # TODO: Close the connection
+    conn.close()
 
     # TODO: Pass entries into your template
     # Example:
-    # return render_template("dashboard.html", entries=entries, username=session["user"])
+    return render_template("dashboard.html", animals=animals, username=session["user"])
 
     # TEMPORARY (remove later)
-    return render_template("secret.html", username=session["user"])
+    # return render_template("secret.html", username=session["user"])
 
 
 # ---------- CREATE ----------
@@ -110,25 +110,43 @@ def animalDisplayPage():
 # - Save data to the database (POST)
 # - Redirect back to dashboard
 # NOTE: Remove the triple """ before and after each route to 'uncomment'
-"""
 @app.route("/create", methods=["GET", "POST"])
 def create():
     if "user" not in session:
         return redirect(url_for("login"))
 
+    conn = get_db()
+    error = ""
     if request.method == "POST":
         # TODO: Get form data (title, content)
+        animal_name = request.form.get("animal_name")
+        habitat = request.form.get("habitat")
+        food = request.form.get("food")
+        image = request.form.get("image_file")
 
+        if not animal_name or not habitat or not food or not image:
+            error = "All fields are required"
         # TODO: Connect to database
-
+        else:
+            conn = get_db()
         # TODO: Insert into entries table
         # IMPORTANT: include session["user"]
+            try:
+                conn.execute(
+                    "INSERT INTO animals (username, animal_name, habitat, food, image) VALUES (?, ?, ?, ?, ?)",
+                    (session["user"], animal_name, habitat, food, image),
+                ).fetchall
 
         # TODO: Commit and close
-
-        return redirect(url_for("dashboard"))
-
-    return render_template("create.html")
+                conn.commit()
+                return redirect(url_for("dashboard"))
+            except sqlite3.IntegrityError:
+                conn.rollback()
+                error = "Animal with name already exists"
+            finally:
+                conn.close()
+        
+    return render_template("create.html", animals=animals, username=session["user"])
 """
 
 # ---------- UPDATE ----------
@@ -184,8 +202,6 @@ def delete(id):
     # TODO: Commit and close
 
     return redirect(url_for("dashboard"))
-"""
-
 
 @app.route("/logout")
 def logout():

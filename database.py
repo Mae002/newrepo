@@ -1,18 +1,12 @@
 import sqlite3
 
 def get_db():
-    conn = sqlite3.connect("users.db")
-    conn.row_factory = sqlite3.Row
-    return conn
-
-def get_animals_db():
-    conn = sqlite3.connect("animals.db")
+    conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
     return conn
 
 def init_db():
     conn = get_db()
-    a_conn = get_animals_db()
     # Add your new table between lines 15 & 16.
     conn.execute("""
         CREATE TABLE IF NOT EXISTS users (
@@ -20,7 +14,7 @@ def init_db():
             password TEXT
         )
     """)
-    a_conn.execute("""
+    conn.execute("""
         CREATE TABLE IF NOT EXISTS animals (
             animal_name TEXT PRIMARY KEY, 
             habitat TEXT, 

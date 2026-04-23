@@ -10,15 +10,28 @@
 
 <!-- TODO: Add a button or link to create a new entry -->
 <!-- Example: <a href="/create">Create New Entry</a> -->
-    
 
-<br><br>
+<a href="/create">Add more information</a>
+<!-- <br><br> -->
 
 <!-- TODO: Loop through entries passed from Flask -->
 <!-- The variable "entries" will come from your Flask route -->
 <!-- Example structure: -->
+<p>Contribute to our animal loving community today!</p>
+    <div class="animal-container">
+        {{% for animal in animals %}}
+            <div class="animal-card card">
+                <img src="{{image_file}}" alt="{{animals.animal_name}}">
+                <h4>class = "card-title">{{animal_name}}</strong></h4>
+                <p><span class="label">Habitat</span> {{animals.habitat}}</p>
+                <p><span class="label">Food</span> {{animals.food}}</p>
+                </div>
+        {{% endfor %}} 
+    </div>
+    <div style="margin-top: 20px;">
+    <a href="/create"><button>Add Animal Info</button></a>
 
-<!--
+<!-- 
 {% for entry in entries %}
     <div>
         <h3>{{ entry['title'] }}</h3>
@@ -30,10 +43,10 @@
         <!-- TODO: Add Delete link -->
         <!-- Example: /delete/{{ entry['id'] }} -->
 
-    </div>
-    <hr>
-{% endfor %}
--->
+    <!--</div> -->
+    <!--<hr> -->
+<!--{% endfor %}  -->
+
 
 <!-- TODO: If no entries exist, display a message like:
 "No entries yet!" -->
@@ -42,5 +55,5 @@
 
 <!-- TODO: Add a logout button -->
 <a href="/logout"><button>Logout</button></a>
-
+</div>
 {% endblock %}

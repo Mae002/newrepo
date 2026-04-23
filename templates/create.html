@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Create New Entry</h2>
-
+<div class="card">
+<h2>Add More Information</h2>
 <!-- TODO: Create a form that sends a POST request -->
 
 <form method="POST">
 
     <!-- TODO: Add input for title -->
-    
+    <input type="text" name="animal_name" placeholder="Animal Name" required><br>
     <!-- TODO: Add input for content -->
-
+    <input type="text" name="habitat" placeholder="Habitat" required><br>
+    <input type="food" name="food" placeholder="Food" required><br>
+    <input type="file" name="image_file" accept="image/*" required><br>
     <!-- TODO: Add submit button -->
-
+    <button type="submit">Add Animal</button>
 </form>
 
 <!-- TODO: Add a link back to dashboard -->
-
+<a href="/main_animal">Back to Animals</a>
+<p class="error">{{{{ error }}}}</p>
+<a href="logout"><button>Logout</button></a>
+</div>
 {% endblock %}
