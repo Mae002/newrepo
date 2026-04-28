@@ -42,10 +42,10 @@ def seed_database():
                 "INSERT INTO users (username, password) VALUES (?, ?)",
                 (username, hashed_pw)
             )
-        for animal_name, habitat, food, image in sample_animals:
+        for animal_name, habitat, food, image_file in sample_animals:
             conn.execute(
-                "INSERT INTO animals (animal_name, habitat, food, image) VALUES (?, ?, ?, ?)",
-                (animal_name, habitat, food, image),
+                "INSERT INTO animals (animal_name, habitat, food, image_file) VALUES (?, ?, ?, ?)",
+                (animal_name, habitat, food, image_file),
             )
             print(f"Added animal: {animal_name}")
             

@@ -88,9 +88,10 @@ def dashboard():
     # # TODO: Get all entries that belong to the logged-in user
     # # Example:
     animals = conn.execute(
-        "SELECT * FROM animals WHERE animals=?",
-        (session["user"]),
+        "SELECT * FROM animals"
     ).fetchall()
+
+    
 
     # # TODO: Close the connection
     conn.close()
@@ -122,9 +123,9 @@ def create():
         animal_name = request.form.get("animal_name")
         habitat = request.form.get("habitat")
         food = request.form.get("food")
-        image = request.form.get("image_file")
+        image_file = request.form.get("image_file")
 
-        if not animal_name or not habitat or not food or not image:
+        if not animal_name or not habitat or not food or not image_file:
             error = "All fields are required"
         # TODO: Connect to database
         else:
@@ -133,9 +134,9 @@ def create():
         # IMPORTANT: include session["user"]
             try:
                 conn.execute(
-                    "INSERT INTO animals (username, animal_name, habitat, food, image) VALUES (?, ?, ?, ?, ?)",
-                    (session["user"], animal_name, habitat, food, image),
-                ).fetchall
+                    "INSERT INTO animals (username, animal_name, habitat, food, image_file) VALUES (?, ?, ?, ?, ?)",
+                    (session["user"], animal_name, habitat, food, image_file),
+                ).fetchall()
 
         # TODO: Commit and close
                 conn.commit()

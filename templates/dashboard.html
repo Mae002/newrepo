@@ -12,21 +12,21 @@
 <!-- Example: <a href="/create">Create New Entry</a> -->
 
 <a href="/create">Add more information</a>
-<!-- <br><br> -->
+<br><br>
 
 <!-- TODO: Loop through entries passed from Flask -->
 <!-- The variable "entries" will come from your Flask route -->
 <!-- Example structure: -->
 <p>Contribute to our animal loving community today!</p>
     <div class="animal-container">
-        {{% for animal in animals %}}
+        {% for animal in animals %}
             <div class="animal-card card">
-                <img src="{{image_file}}" alt="{{animals.animal_name}}">
-                <h4>class = "card-title">{{animal_name}}</strong></h4>
-                <p><span class="label">Habitat</span> {{animals.habitat}}</p>
-                <p><span class="label">Food</span> {{animals.food}}</p>
+                <img src="{{animal.image_file}}" alt="{{animal.animal_name}}">
+                <h4><class ="card-title">{{animal.animal_name}}</strong></h4>
+                <p><span class="label">Habitat:</span> {{animal.habitat}}</p>
+                <p><span class="label">Food:</span> {{animal.food}}</p>
                 </div>
-        {{% endfor %}} 
+        {% endfor %}
     </div>
     <div style="margin-top: 20px;">
     <a href="/create"><button>Add Animal Info</button></a>
