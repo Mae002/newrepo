@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="card">
 <h2>Edit Entry</h2>
 
 <!-- TODO: Create a form that sends a POST request -->
@@ -9,13 +10,15 @@
 
     <!-- TODO: Pre-fill title using entry data -->
     <!-- Hint: value="{{ entry['title'] }}" -->
-
+    <input type="text" name="animal_name" value="{{animals[animal_name]}}"">
     <!-- TODO: Pre-fill content using entry data -->
 
     <!-- TODO: Add submit button -->
-
+    <button type="submit">Edit Animal Info</button>
 </form>
-
+</div>
 <!-- TODO: Add a link back to dashboard -->
-
+<a href="/dashboard">Back to Animals</a>
+<p class="error">{{error}}</p>
+<a href="logout"><button>Logout</button></a>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="card">
-<h2>Add More Information</h2>
+<h2>Add More Animals</h2>
 <!-- TODO: Create a form that sends a POST request -->
 
 <form method="POST">
@@ -18,8 +18,8 @@
 </form>
 
 <!-- TODO: Add a link back to dashboard -->
-<a href="/main_animal">Back to Animals</a>
-<p class="error">{{{{ error }}}}</p>
+<a href="/dashboard">Back to Animals</a>
+<p class="error">{{error}}</p>
 <a href="logout"><button>Logout</button></a>
 </div>
 {% endblock %}

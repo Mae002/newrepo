@@ -120,9 +120,9 @@ def create():
     error = ""
     if request.method == "POST":
         # TODO: Get form data (title, content)
-        animal_name = request.form.get("animal_name")
-        habitat = request.form.get("habitat")
-        food = request.form.get("food")
+        animal_name = request.form.get("animal_name"),
+        habitat = request.form.get("habitat"),
+        food = request.form.get("food"),
         image_file = request.form.get("image_file")
 
         if not animal_name or not habitat or not food or not image_file:
@@ -137,7 +137,7 @@ def create():
                     "INSERT INTO animals (username, animal_name, habitat, food, image_file) VALUES (?, ?, ?, ?, ?)",
                     (session["user"], animal_name, habitat, food, image_file),
                 ).fetchall()
-
+        
         # TODO: Commit and close
                 conn.commit()
                 return redirect(url_for("dashboard"))
@@ -146,8 +146,9 @@ def create():
                 error = "Animal with name already exists"
             finally:
                 conn.close()
-        
-    return render_template("create.html", animals=animals, username=session["user"])
+    return render_template("create.html",  username=session["user"])
+
+
 """
 
 # ---------- UPDATE ----------
@@ -164,7 +165,7 @@ def edit(id):
         return redirect(url_for("login"))
 
     # TODO: Connect to database
-
+    conn = get_db()
     # TODO: Get entry WHERE id AND user
     # This prevents editing other users' data
 
@@ -173,7 +174,7 @@ def edit(id):
 
     if request.method == "POST":
         # TODO: Get updated form data
-
+        
         # TODO: Update database
         # IMPORTANT: include id AND session["user"]
 
