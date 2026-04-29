@@ -11,8 +11,6 @@
 <!-- TODO: Add a button or link to create a new entry -->
 <!-- Example: <a href="/create">Create New Entry</a> -->
 
-<a href="/create">Add more information</a>
-<br><br>
 
 <!-- TODO: Loop through entries passed from Flask -->
 <!-- The variable "entries" will come from your Flask route -->
@@ -25,7 +23,9 @@
                 <h4><class ="card-title">{{animal.animal_name}}</strong></h4>
                 <p><span class="label">Habitat:</span> {{animal.habitat}}</p>
                 <p><span class="label">Food:</span> {{animal.food}}</p>
-                </div>
+                <a href="{{ url_for('edit', name=animal_name) }}">Edit</a>
+                <a href="{{ url_for('delete', name=animal_name) }}" onclick="return confirm('Delete this animal?');">Delete</a>
+            </div>
         {% endfor %}
     </div>
     <div style="margin-top: 20px;">

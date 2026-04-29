@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="card">
-<h2>Edit Entry</h2>
+<h2>Edit {{ animal.animal_name }}</h2>
 
 <!-- TODO: Create a form that sends a POST request -->
 
@@ -10,11 +10,12 @@
 
     <!-- TODO: Pre-fill title using entry data -->
     <!-- Hint: value="{{ entry['title'] }}" -->
-    <input type="text" name="animal_name" value="{{animals[animal_name]}}"">
+    <input type="text" name="image_file" value="{{animal.image_file}}"required><br>
+    <input type="text" name="habitat"  value="{{animal.habitat}}" required><br>
+    <input type="text" name="food" value="{{animals.food}}"required><br>
+    <button type="submit">Save Changes</button>
     <!-- TODO: Pre-fill content using entry data -->
-
     <!-- TODO: Add submit button -->
-    <button type="submit">Edit Animal Info</button>
 </form>
 </div>
 <!-- TODO: Add a link back to dashboard -->

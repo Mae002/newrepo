@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="card">
-<h2>Add More Animals</h2>
+<h2>Add Animals</h2>
 <!-- TODO: Create a form that sends a POST request -->
 
 <form method="POST">
@@ -11,8 +11,8 @@
     <input type="text" name="animal_name" placeholder="Animal Name" required><br>
     <!-- TODO: Add input for content -->
     <input type="text" name="habitat" placeholder="Habitat" required><br>
-    <input type="food" name="food" placeholder="Food" required><br>
-    <input type="file" name="image_file" accept="image/*" required><br>
+    <input type="text" name="food" placeholder="Food" required><br>
+    <input type="text" name="image_file" placeholder="Image URL" required><br>
     <!-- TODO: Add submit button -->
     <button type="submit">Add Animal</button>
 </form>
