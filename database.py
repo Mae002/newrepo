@@ -16,7 +16,8 @@ def init_db():
     """)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS animals (
-            animal_name TEXT PRIMARY KEY, 
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            animal_name TEXT, 
             habitat TEXT, 
             food TEXT, 
             image_file TEXT)

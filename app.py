@@ -156,19 +156,19 @@ def create():
 # - Update the database on submit
 
 """
-@app.route("/edit/<string:name>", methods=["GET", "POST"])
-def edit(name):
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
     if "user" not in session:
         return redirect(url_for("login"))
-
+    error = ""
     # TODO: Connect to database
     conn = get_db()
     # TODO: Get entry WHERE id AND user
     # This prevents editing other users' data
     animal = conn.execute(
-        "SELECT * FROM animals WHERE  animal_name=?",
-        (name,)
-        ).fetchone()
+        "SELECT * FROM animals WHERE id=?",
+        (id,)
+    ).fetchone()
     
     if not animal:
         conn.close()
@@ -176,25 +176,34 @@ def edit(name):
 
     if request.method == "POST":
         # TODO: Get updated form data
-        habitat = request.form['habitat']
-        food = request.form['food']
-        image_file = request.form['image_file']
+        animal_name = request.form['animal_name'].strip()
+        habitat = request.form['habitat'].strip()
+        food = request.form['food'].strip()
+        image_file = request.form['image_file'].strip()
 
+        if not habitat or not food or not image_file or not animal_name:
+            error = "Fields cannot be empty"
+        else:
+            try:
         # TODO: Update database
-        conn.execute(
-            "UPDATE animals SET habitat = ?, food = ?, image_file =?,  WHERE animal_name=?",
-            (habitat, food, image_file, name)
-        )
-        conn.commit()
-        conn.close()
-        return redirect(url_for("dashboard"))
+                conn.execute(
+                    "UPDATE animals SET habitat = ?, food = ?, image_file =?, animal_name=? WHERE id=?",
+                    (habitat, food, image_file, animal_name, id)
+                )
+                conn.commit()
+                conn.close()
+                return redirect(url_for("dashboard"))
+            except:
+                conn.rollback()
+                conn.close()
+                return "Error editing animal"
         # IMPORTANT: include id AND session["user"]
 
         # TODO: Commit and close
 
-        return redirect(url_for("dashboard"))
-
-    return render_template("edit.html", animal=animal, username=session["user"])
+        
+    conn.close()
+    return render_template("edit.html", animal=animal, username=session["user"], error="", id=id)
 """
 
 # ---------- DELETE ----------
@@ -204,23 +213,37 @@ def edit(name):
 # - Redirect back to dashboard
 
 """
-@app.route("/delete/<string:name>")
-def delete(name):
+@app.route("/delete/<int:id>", methods=["GET", "POST"])
+def delete(id):
     if "user" not in session:
         return redirect(url_for("login"))
 
     # TODO: Connect to database
     conn = get_db()
-    conn.execute(
-        "DELETE FROM animals WHERE animal_name=?", (name,)
-    )
+    animal = conn.execute(
+           "SELECT * FROM animals WHERE id=?", 
+           (id,)
+    ).fetchone()
     # TODO: Delete entry WHERE id AND user
-
+    if not animal:
+        conn.close()
+        return "Entry not found"
+    if request.method == "POST":
+        try:
+            conn.execute(
+                "DELETE FROM animals WHERE id=?",
+                (id,)
+            )
+            conn.commit()
+        except:
+            conn.rollback()
+        finally:
+            conn.close()
+        
     # TODO: Commit and close
-    conn.commit()
-    conn.close()
     return redirect(url_for("dashboard"))
 
+    return render_template("delete.html", animal=animal)
 @app.route("/logout")
 def logout():
     session.pop("user", None)
