@@ -239,10 +239,9 @@ def delete(id):
             conn.rollback()
         finally:
             conn.close()
-        
     # TODO: Commit and close
-    return redirect(url_for("dashboard"))
-
+        return redirect(url_for("dashboard"))
+    conn.close()
     return render_template("delete.html", animal=animal)
 @app.route("/logout")
 def logout():
