@@ -88,7 +88,7 @@ def dashboard():
     # # TODO: Get all entries that belong to the logged-in user
     # # Example:
     animals = conn.execute(
-        "SELECT * FROM animals"
+        "SELECT * FROM animals" 
     ).fetchall()
 
     
@@ -131,8 +131,8 @@ def create():
         # IMPORTANT: include session["user"]
             try:
                 conn.execute(
-                    "INSERT INTO animals (animal_name, habitat, food, image_file) VALUES (?, ?, ?, ?)",
-                    (animal_name, habitat, food, image_file)
+                    "INSERT INTO animals (animal_name, habitat, food, image_file, creator) VALUES (?, ?, ?, ?, ?)",
+                    (animal_name, habitat, food, image_file, session["user"])
                 )
         
         # TODO: Commit and close
@@ -161,15 +161,17 @@ def edit(id):
     if "user" not in session:
         return redirect(url_for("login"))
     error = ""
+    
     # TODO: Connect to database
     conn = get_db()
     # TODO: Get entry WHERE id AND user
     # This prevents editing other users' data
     animal = conn.execute(
-        "SELECT * FROM animals WHERE id=?",
-        (id,)
+        "SELECT * FROM animals WHERE id=? AND creator=?",
+        (id, session["user"],)
     ).fetchone()
     
+
     if not animal:
         conn.close()
         return "Not allowed"
@@ -187,8 +189,8 @@ def edit(id):
             try:
         # TODO: Update database
                 conn.execute(
-                    "UPDATE animals SET habitat = ?, food = ?, image_file =?, animal_name=? WHERE id=?",
-                    (habitat, food, image_file, animal_name, id)
+                    "UPDATE animals SET habitat = ?, food = ?, image_file =?, animal_name=? WHERE id=? AND creator=?",
+                    (habitat, food, image_file, animal_name, id, session["user"])
                 )
                 conn.commit()
                 conn.close()
@@ -217,12 +219,13 @@ def edit(id):
 def delete(id):
     if "user" not in session:
         return redirect(url_for("login"))
+    
 
     # TODO: Connect to database
     conn = get_db()
     animal = conn.execute(
-           "SELECT * FROM animals WHERE id=?", 
-           (id,)
+           "SELECT * FROM animals WHERE id=? AND creator=?", 
+           (id, session["user"],)
     ).fetchone()
     # TODO: Delete entry WHERE id AND user
     if not animal:
@@ -231,8 +234,8 @@ def delete(id):
     if request.method == "POST":
         try:
             conn.execute(
-                "DELETE FROM animals WHERE id=?",
-                (id,)
+                "DELETE FROM animals WHERE id=? AND creator=?",
+                (id, session["user"])
             )
             conn.commit()
         except:

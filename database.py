@@ -20,7 +20,8 @@ def init_db():
             animal_name TEXT, 
             habitat TEXT, 
             food TEXT, 
-            image_file TEXT)
+            image_file TEXT,
+            creator TEXT)
     """)
 
     conn.commit()

@@ -27,12 +27,12 @@ def seed_database():
     ]
 
     sample_animals = [
-        ("Hyena", "Sub-Saharan", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfsiTXJbvrwcxFj7FMAJWQHS5J1hW9QOwhA&s"),
-        ("Cheetah", "Africa", "meat", "https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/AWF_SpeciesPage_Cheetah02_Challenges.webp?h=29c6c1f6&itok=6IU3ZoYS"),
-        ("Tiger", "Asia", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFtLbS-bbYiXTQOscGaflhDc459sN3olDdgA&s"),
-        ("Horse", "Grasslands and Prairies", "grass", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQx_56Q13xABq0_4iJhREf_YAS4-85zwki-Q&s"),
-        ("Dog", "Households", "high protein", "https://www.nylabone.com/-/media/project/oneweb/nylabone/images/dog101/10-intelligent-dog-breeds/golden-retriever-tongue-out.jpg?h=430&w=710&hash=7FEB820D235A44B76B271060E03572C7"),
-        ("Cat", "Households, wild", "high nutrition", "https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?crop=1%3A1%2Csmart&w=1000"),
+        ("Hyena", "Sub-Saharan", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjfsiTXJbvrwcxFj7FMAJWQHS5J1hW9QOwhA&s", "public"),
+        ("Cheetah", "Africa", "meat", "https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/AWF_SpeciesPage_Cheetah02_Challenges.webp?h=29c6c1f6&itok=6IU3ZoYS", "public"),
+        ("Tiger", "Asia", "meat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFtLbS-bbYiXTQOscGaflhDc459sN3olDdgA&s", "public"),
+        ("Horse", "Grasslands and Prairies", "grass", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQx_56Q13xABq0_4iJhREf_YAS4-85zwki-Q&s", "public"),
+        ("Dog", "Households", "high protein", "https://www.nylabone.com/-/media/project/oneweb/nylabone/images/dog101/10-intelligent-dog-breeds/golden-retriever-tongue-out.jpg?h=430&w=710&hash=7FEB820D235A44B76B271060E03572C7", "public"),
+        ("Cat", "Households, wild", "high nutrition", "https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?crop=1%3A1%2Csmart&w=1000", "public"),
     ]
     
     try:
@@ -42,10 +42,10 @@ def seed_database():
                 "INSERT INTO users (username, password) VALUES (?, ?)",
                 (username, hashed_pw)
             )
-        for animal_name, habitat, food, image_file in sample_animals:
+        for animal_name, habitat, food, image_file, creator in sample_animals:
             conn.execute(
-                "INSERT INTO animals (animal_name, habitat, food, image_file) VALUES (?, ?, ?, ?)",
-                (animal_name, habitat, food, image_file),
+                "INSERT INTO animals (animal_name, habitat, food, image_file, creator) VALUES (?, ?, ?, ?, ?)",
+                (animal_name, habitat, food, image_file, creator),
             )
             print(f"Added animal: {animal_name}")
             
