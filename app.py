@@ -88,7 +88,8 @@ def dashboard():
     # # TODO: Get all entries that belong to the logged-in user
     # # Example:
     animals = conn.execute(
-        "SELECT * FROM animals" 
+        "SELECT * FROM animals WHERE creator = ? OR creator = 'public'",
+        (session["user"],)
     ).fetchall()
 
     
