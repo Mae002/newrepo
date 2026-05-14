@@ -4,35 +4,39 @@ APP PLANNING & DESIGN
 
 1. PROJECT IDEA
 -------------------------
-- What is your app called?
+- What is your app called? AniVision 
 - What type of app is it? (journal, listings, notes, etc.)
+It lists animals and info about animals. 
 - What will users use your app for?
-
+They will use to store info they learn. 
 2. DATA MODEL (WHAT ARE YOU STORING?)
 -------------------------
-- What is a single “entry” in your app?
-- What fields will each entry have? (title, content, date, etc.)
+- What is a single “entry” in your app?  An animal card which has 4 fields. 
+- What fields will each entry have? (title, content, date, etc.) 
+animal name, habitat, food, image
 - How will entries be connected to a user?
-
+if the user creates the entry they can edit and delete it
 3. CORE FEATURES (CRUD)
 -------------------------
-- What can users CREATE?
-- What will they see on the main page (READ)?
-- What can users EDIT (UPDATE)?
-- What can users DELETE?
+- What can users CREATE? They can create a new animal card info
+- What will they see on the main page (READ)? Animal cards that are preloaded and their own entries
+- What can users EDIT (UPDATE)? They can edit only their own entry
+- What can users DELETE? Only their own entry
 
 4. USER FLOW
 -------------------------
-- What happens after a user logs in?
-- What pages/routes will your app need? (dashboard, create, edit, etc.)
+- What happens after a user logs in? They can view preloaded content, and choose to add animals through pressing a button. 
+- What pages/routes will your app need? (dashboard, create, edit, etc.) 
+dashboard, register, login, edit, delete, create
 - Describe a typical user experience from login → using your app
-
+When the log in they are redirected to dashboard and when they scroll down they can see and add animal info button and a logout if they choose to add animal they are taken to a different card where they are asked to fill out 4 fields and they can choose to add it or go back to animals. Each entry (created by the user) will have an edit and delete button. 
 5. USER EXPERIENCE (UX)
 -------------------------
-- How should your app look and feel?
-- How will users navigate between pages?
-- How will entries be displayed (list, cards, etc.)?
+- How should your app look and feel? Our app should feel easy and fun to use. 
+- How will users navigate between pages? They can use buttons
+- How will entries be displayed (list, cards, etc.)? Cards
 
 6. OPTIONAL FEATURES
 -------------------------
 - What extra features might you add? (search, tags, sorting, etc.)
+Perhaps an tags features to further categorize the animals. 
