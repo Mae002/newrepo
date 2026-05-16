@@ -7,6 +7,8 @@ When you finish, add your names and a demo video link here, then submit one link
 **Group Members:** (Mae Soriano and Hunter Jackson)  
 * [Demo Video (1 per group)](https://drive.google.com/file/d/1CTUj49H_0eBEPbtwlLeCDIerb61Nk9sn/view?usp=sharing)
 
+Reflection(Mae)
+https://docs.google.com/document/d/1XFETnjlUUGHdYdovqqTRHJi6ndMywCAbSTDKtgAXOus/edit?usp=sharing 
 ---
 
 ### Project Overview
